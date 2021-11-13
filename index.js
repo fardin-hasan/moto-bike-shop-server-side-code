@@ -36,6 +36,12 @@ async function run() {
             const products = await cursor.toArray();
             res.send(products);
         });
+        // find all order for admin
+        app.get('/manageAllOrders', async (req, res) => {
+            const cursor = PurchaseCollection.find({});
+            const manageAllOrders = await cursor.toArray();
+            res.send(manageAllOrders);
+        });
 
         // single product based on product id 
         app.get('/purchase/:id', async (req, res) => {
