@@ -129,6 +129,14 @@ async function run() {
             const result = await PurchaseCollection.deleteOne(query);
             res.json(result)
         })
+
+        // delete manage all orders for admin
+        app.delete('/manageAllOrders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await PurchaseCollection.deleteOne(query);
+            res.json(result)
+        })
     } finally {
         // await client.close();
     }
