@@ -87,7 +87,7 @@ async function run() {
         })
 
         // admin 
-        app.put('users/admin', async (req, res) => {
+        app.put('/users/admin', async (req, res) => {
             const user = req.body;
             const filter = { email: user.email };
             const updateDoc = { $set: { role: 'admin' } };
