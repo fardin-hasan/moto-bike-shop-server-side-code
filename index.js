@@ -137,6 +137,13 @@ async function run() {
             const result = await PurchaseCollection.deleteOne(query);
             res.json(result)
         })
+        // delete manage products
+        app.delete('/manageProducts/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await allProducts.deleteOne(query);
+            res.json(result)
+        })
     } finally {
         // await client.close();
     }
