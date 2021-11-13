@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const app = express()
-app.use(cors())
+app.use(cors());
 app.use(express.json())
 const port = process.env.PORT || 5000
 
@@ -20,6 +20,7 @@ async function run() {
         const allProducts = database.collection("productsCollections");
         const PurchaseCollection = database.collection("PurchaseCollection");
         const customerReview = database.collection("customerReview");
+        const userCollection = database.collection("users");
         console.log('done')
 
         // find limited data for homepage
@@ -67,6 +68,14 @@ async function run() {
             const review = await cursor.toArray();
             res.send(review);
         })
+        // users
+        app.post('/users', async (req, res) => {
+
+            const user = req.body;
+            const result = await userCollection.insertOne(user);
+            res.json(result);
+
+        });
     } finally {
         // await client.close();
     }
